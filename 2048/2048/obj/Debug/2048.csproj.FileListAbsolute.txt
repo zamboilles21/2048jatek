@@ -1,0 +1,10 @@
+D:\GIT2\2048\2048\bin\Debug\2048.exe.config
+D:\GIT2\2048\2048\bin\Debug\2048.exe
+D:\GIT2\2048\2048\bin\Debug\2048.pdb
+D:\GIT2\2048\2048\obj\Debug\2048.csprojAssemblyReference.cache
+D:\GIT2\2048\2048\obj\Debug\_2048.A2048.resources
+D:\GIT2\2048\2048\obj\Debug\_2048.Properties.Resources.resources
+D:\GIT2\2048\2048\obj\Debug\2048.csproj.GenerateResource.cache
+D:\GIT2\2048\2048\obj\Debug\2048.csproj.CoreCompileInputs.cache
+D:\GIT2\2048\2048\obj\Debug\2048.exe
+D:\GIT2\2048\2048\obj\Debug\2048.pdb
