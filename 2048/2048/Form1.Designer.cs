@@ -64,6 +64,7 @@ namespace _2048
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panel2.Location = new System.Drawing.Point(194, 12);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(86, 83);
