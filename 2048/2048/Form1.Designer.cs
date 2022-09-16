@@ -29,6 +29,7 @@ namespace _2048
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.P1 = new System.Windows.Forms.Panel();
             this.P3 = new System.Windows.Forms.Panel();
             this.P2 = new System.Windows.Forms.Panel();
@@ -51,6 +52,9 @@ namespace _2048
             this.Lbtn = new System.Windows.Forms.Button();
             this.Fbtn = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,6 +63,7 @@ namespace _2048
             this.P1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.P1.BackgroundImage = global::_2048.Properties.Resources._1767_hi_res;
             this.P1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.P1.Enabled = false;
             this.P1.Location = new System.Drawing.Point(10, 12);
             this.P1.Name = "P1";
             this.P1.Size = new System.Drawing.Size(86, 83);
@@ -68,6 +73,7 @@ namespace _2048
             // P3
             // 
             this.P3.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.P3.Enabled = false;
             this.P3.Location = new System.Drawing.Point(194, 12);
             this.P3.Name = "P3";
             this.P3.Size = new System.Drawing.Size(86, 83);
@@ -76,6 +82,7 @@ namespace _2048
             // P2
             // 
             this.P2.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.P2.Enabled = false;
             this.P2.Location = new System.Drawing.Point(102, 12);
             this.P2.Name = "P2";
             this.P2.Size = new System.Drawing.Size(86, 83);
@@ -84,6 +91,7 @@ namespace _2048
             // P4
             // 
             this.P4.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.P4.Enabled = false;
             this.P4.Location = new System.Drawing.Point(286, 12);
             this.P4.Name = "P4";
             this.P4.Size = new System.Drawing.Size(86, 83);
@@ -92,6 +100,7 @@ namespace _2048
             // P8
             // 
             this.P8.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.P8.Enabled = false;
             this.P8.Location = new System.Drawing.Point(286, 101);
             this.P8.Name = "P8";
             this.P8.Size = new System.Drawing.Size(86, 83);
@@ -100,6 +109,7 @@ namespace _2048
             // P7
             // 
             this.P7.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.P7.Enabled = false;
             this.P7.Location = new System.Drawing.Point(194, 101);
             this.P7.Name = "P7";
             this.P7.Size = new System.Drawing.Size(86, 83);
@@ -108,6 +118,7 @@ namespace _2048
             // P6
             // 
             this.P6.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.P6.Enabled = false;
             this.P6.Location = new System.Drawing.Point(102, 101);
             this.P6.Name = "P6";
             this.P6.Size = new System.Drawing.Size(86, 83);
@@ -116,6 +127,7 @@ namespace _2048
             // P5
             // 
             this.P5.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.P5.Enabled = false;
             this.P5.Location = new System.Drawing.Point(10, 101);
             this.P5.Name = "P5";
             this.P5.Size = new System.Drawing.Size(86, 83);
@@ -124,6 +136,7 @@ namespace _2048
             // P12
             // 
             this.P12.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.P12.Enabled = false;
             this.P12.Location = new System.Drawing.Point(286, 190);
             this.P12.Name = "P12";
             this.P12.Size = new System.Drawing.Size(86, 83);
@@ -132,6 +145,7 @@ namespace _2048
             // P11
             // 
             this.P11.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.P11.Enabled = false;
             this.P11.Location = new System.Drawing.Point(194, 190);
             this.P11.Name = "P11";
             this.P11.Size = new System.Drawing.Size(86, 83);
@@ -140,6 +154,7 @@ namespace _2048
             // P10
             // 
             this.P10.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.P10.Enabled = false;
             this.P10.Location = new System.Drawing.Point(102, 190);
             this.P10.Name = "P10";
             this.P10.Size = new System.Drawing.Size(86, 83);
@@ -148,6 +163,7 @@ namespace _2048
             // P9
             // 
             this.P9.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.P9.Enabled = false;
             this.P9.Location = new System.Drawing.Point(10, 190);
             this.P9.Name = "P9";
             this.P9.Size = new System.Drawing.Size(86, 83);
@@ -156,6 +172,7 @@ namespace _2048
             // P16
             // 
             this.P16.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.P16.Enabled = false;
             this.P16.Location = new System.Drawing.Point(286, 279);
             this.P16.Name = "P16";
             this.P16.Size = new System.Drawing.Size(86, 83);
@@ -164,6 +181,7 @@ namespace _2048
             // P15
             // 
             this.P15.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.P15.Enabled = false;
             this.P15.Location = new System.Drawing.Point(194, 279);
             this.P15.Name = "P15";
             this.P15.Size = new System.Drawing.Size(86, 83);
@@ -172,6 +190,7 @@ namespace _2048
             // P14
             // 
             this.P14.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.P14.Enabled = false;
             this.P14.Location = new System.Drawing.Point(102, 279);
             this.P14.Name = "P14";
             this.P14.Size = new System.Drawing.Size(86, 83);
@@ -180,6 +199,7 @@ namespace _2048
             // P13
             // 
             this.P13.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.P13.Enabled = false;
             this.P13.Location = new System.Drawing.Point(10, 279);
             this.P13.Name = "P13";
             this.P13.Size = new System.Drawing.Size(86, 83);
@@ -233,18 +253,36 @@ namespace _2048
             // pictureBox1
             // 
             this.pictureBox1.Image = global::_2048.Properties.Resources._1767_hi_res;
-            this.pictureBox1.Location = new System.Drawing.Point(179, 369);
+            this.pictureBox1.Location = new System.Drawing.Point(286, 398);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox1.Size = new System.Drawing.Size(10, 10);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 16;
             this.pictureBox1.TabStop = false;
+            // 
+            // timer
+            // 
+            this.timer.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(286, 431);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "label1";
             // 
             // A2048
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(381, 631);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.Fbtn);
             this.Controls.Add(this.Lbtn);
@@ -272,6 +310,7 @@ namespace _2048
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -299,6 +338,9 @@ namespace _2048
         private System.Windows.Forms.Button Lbtn;
         private System.Windows.Forms.Button Fbtn;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label label1;
     }
 }
 
