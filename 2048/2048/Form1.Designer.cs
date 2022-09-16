@@ -50,11 +50,15 @@ namespace _2048
             this.Jbtn = new System.Windows.Forms.Button();
             this.Lbtn = new System.Windows.Forms.Button();
             this.Fbtn = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // P1
             // 
             this.P1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.P1.BackgroundImage = global::_2048.Properties.Resources._1767_hi_res;
+            this.P1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.P1.Location = new System.Drawing.Point(10, 12);
             this.P1.Name = "P1";
             this.P1.Size = new System.Drawing.Size(86, 83);
@@ -226,11 +230,22 @@ namespace _2048
             this.Fbtn.Text = "Fel";
             this.Fbtn.UseVisualStyleBackColor = true;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::_2048.Properties.Resources._1767_hi_res;
+            this.pictureBox1.Location = new System.Drawing.Point(179, 369);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 16;
+            this.pictureBox1.TabStop = false;
+            // 
             // A2048
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(381, 631);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.Fbtn);
             this.Controls.Add(this.Lbtn);
             this.Controls.Add(this.Jbtn);
@@ -255,6 +270,7 @@ namespace _2048
             this.Name = "A2048";
             this.Text = "2048";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -282,6 +298,7 @@ namespace _2048
         private System.Windows.Forms.Button Jbtn;
         private System.Windows.Forms.Button Lbtn;
         private System.Windows.Forms.Button Fbtn;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
