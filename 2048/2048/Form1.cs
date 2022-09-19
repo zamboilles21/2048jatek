@@ -14,7 +14,8 @@ namespace _2048
     {
 
 
-        static PictureBox[,] kepek = new PictureBox[4, 4];
+        static int counter = 16;
+        
         public A2048()
         {
             InitializeComponent();
@@ -23,26 +24,39 @@ namespace _2048
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            
-                
 
+            generatemap();
+            
             //startup();
 
+        }
 
-            
+        private void generatemap()
+        {
+            Panel [] panels = new Panel[counter];
+            Label [] labels = new Label[counter];
+
+            for (int i = 0; i < counter; i++)
+            {
+                panels[i] = new Panel();
+                labels[i] = new Label();
+            }
+            for (int i = 0; i < counter; i++)
+            {
+                this.Controls.Add(panels[i]);
+                this.Controls.Add(labels[i]);
+            }
 
 
-            
 
 
 
         }
 
-        
-
         private void startup()
         {
 
+            putnumber();
             putnumber();
         }
 
@@ -58,7 +72,7 @@ namespace _2048
         {
             Random location = new Random();
             int tizenhatig = location.Next(1, 17);
-
+            
             return tizenhatig;
             
 
@@ -81,6 +95,11 @@ namespace _2048
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
         {
 
         }
