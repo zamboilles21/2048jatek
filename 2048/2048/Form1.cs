@@ -15,6 +15,8 @@ namespace _2048
 
 
         static int counter = 16;
+        static PictureBox[,] kepek = new PictureBox[4, 4];
+        static Label[,] labelek = new Label[4, 4];
         
         public A2048()
         {
@@ -27,24 +29,52 @@ namespace _2048
 
             generatemap();
             
-            //startup();
+            startup();
 
         }
 
         private void generatemap()
         {
-            Panel [] panels = new Panel[counter];
-            Label [] labels = new Label[counter];
+            
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    PictureBox uj = new PictureBox();
+                    uj.Location = new Point(12 + 75 * j + 5 * j, 12 + 75 * i + 5 * i);
+                    uj.Size = new Size(75, 75);
+                    uj.Name = $"{i}_{j}";
+                    kepek[i, j] = uj;
+                    
+                        uj.Image = Image.FromFile("1767_hi_res.png");
+                    
 
-            for (int i = 0; i < counter; i++)
-            {
-                panels[i] = new Panel();
-                labels[i] = new Label();
+                    uj.BackColor = Color.Transparent;
+                    
+                    this.Controls.Add(uj);
+                    
+                }
             }
-            for (int i = 0; i < counter; i++)
+
+            
+            for (int i = 0; i < 4; i++)
             {
-                this.Controls.Add(panels[i]);
-                this.Controls.Add(labels[i]);
+                for (int j = 0; j < 4; j++)
+                {
+                    Label uj2 = new Label();
+                    uj2.Location = new Point(12 + 75 * j + 5 * j, 12 + 75 * i + 5 * i);
+                    uj2.Size = new Size(75, 75);
+                    uj2.Name = $"{i}_{j}";
+                    labelek[i, j] = uj2;
+                    
+                        uj2.Text = "";
+                    
+
+                    uj2.BackColor = Color.Transparent;
+                    
+                    this.Controls.Add(uj2);
+
+                }
             }
 
 
@@ -65,20 +95,28 @@ namespace _2048
 
              
             int number = generatetwoorfour();
-            generatelocation(number);
+            int x= generatelocation();
+            
+            int y = generatelocation();
+            if (labelek[x, y].Text=="")
+            {
+                labelek[x, y].Text = number.ToString();
+                kepek[x, y].Image= Image.FromFile($"{number}.png");
+            }
+            
+            
+
+
+
         }
 
-        private int generatelocation(int number)
+        private int generatelocation()
         {
             Random location = new Random();
-            int tizenhatig = location.Next(1, 17);
+            int x = location.Next(1, 4);
             
-            return tizenhatig;
+            return x;
             
-
-
-
-
         }
 
         private int generatetwoorfour()
@@ -102,6 +140,26 @@ namespace _2048
         private void timer1_Tick(object sender, EventArgs e)
         {
 
+        }
+
+        private void Bbtn_Click(object sender, EventArgs e)
+        {
+            putnumber();
+        }
+
+        private void Fbtn_Click(object sender, EventArgs e)
+        {
+            putnumber();
+        }
+
+        private void Jbtn_Click(object sender, EventArgs e)
+        {
+            putnumber();
+        }
+
+        private void Lbtn_Click(object sender, EventArgs e)
+        {
+            putnumber();
         }
     }
 }
