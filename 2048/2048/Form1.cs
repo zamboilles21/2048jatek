@@ -14,7 +14,7 @@ namespace _2048
     {
 
 
-        static int counter = 16;
+        
         static PictureBox[,] kepek = new PictureBox[4, 4];
         static Label[,] labelek = new Label[4, 4];
         
@@ -103,6 +103,10 @@ namespace _2048
                 labelek[x, y].Text = number.ToString();
                 kepek[x, y].Image= Image.FromFile($"{number}.png");
             }
+            else
+            {
+                putnumber();
+            }
             
             
 
@@ -144,22 +148,142 @@ namespace _2048
 
         private void Bbtn_Click(object sender, EventArgs e)
         {
+            string direction="bal";
             putnumber();
+            Movolas(direction);
+            
+        }
+
+        private void Movolas(string irany)
+        {
+            switch (irany)
+            {
+                case "bal":
+                    for (int i = 0; i < 4; i++)
+                    {
+                        for (int j = 0; j < 4; j++)
+                        {
+                            for (int h = j; h == 1; h--)
+                            {
+                                if (labelek[i,j-1].Text=="")
+                                {
+                                    labelek[i, j - 1].Text = labelek[i, j].Text;
+                                    labelek[i, j].Text="";
+                                    kepek[i, j - 1].Image = kepek[i, j].Image;
+                                    kepek[i, j].Image= Image.FromFile("1767_hi_res.png");
+                                }
+                                else if(labelek[i, j - 1].Text == labelek[i, j].Text)
+                                {
+                                    int num = Convert.ToInt32(labelek[i, j - 1].Text);
+                                    labelek[i, j].Text = "";
+                                    kepek[i,j].Image= Image.FromFile("1767_hi_res.png");
+                                    labelek[i, j - 1].Text = (num * 2).ToString();
+                                    kepek[i, j - 1].Image = Image.FromFile($"{num*2}.png");
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case "fel":
+                    for (int i = 0; i < 4; i++)
+                    {
+                        for (int j = 0; j < 4; j++)
+                        {
+                            for (int h = i; h == 1; h++)
+                            {
+                                if (labelek[i - 1, j].Text == "")
+                                {
+                                    labelek[i - 1, j].Text = labelek[i, j].Text;
+                                    labelek[i, j].Text = "";
+                                    kepek[i - 1, j].Image = kepek[i, j].Image;
+                                    kepek[i, j].Image = Image.FromFile("1767_hi_res.png");
+                                }
+                                else if (labelek[i - 1, j].Text == labelek[i, j].Text)
+                                {
+                                    int num = Convert.ToInt32(labelek[i - 1, j].Text);
+                                    labelek[i, j].Text = "";
+                                    kepek[i, j].Image = Image.FromFile("1767_hi_res.png");
+                                    labelek[i - 1, j].Text = (num * 2).ToString();
+                                    kepek[i - 1, j].Image = Image.FromFile($"{num * 2}.png");
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case "le":
+                    for (int i = 0; i < 4; i++)
+                    {
+                        for (int j = 0; j < 4; j++)
+                        {
+                            for (int h = i; h == 4; h++)
+                            {
+                                if (labelek[i + 1, j].Text == "")
+                                {
+                                    labelek[i + 1, j ].Text = labelek[i, j].Text;
+                                    labelek[i, j].Text = "";
+                                    kepek[i + 1, j].Image = kepek[i, j].Image;
+                                    kepek[i, j].Image = Image.FromFile("1767_hi_res.png");
+                                }
+                                else if (labelek[i + 1, j].Text == labelek[i, j].Text)
+                                {
+                                    int num = Convert.ToInt32(labelek[i + 1, j].Text);
+                                    labelek[i, j].Text = "";
+                                    kepek[i, j].Image = Image.FromFile("1767_hi_res.png");
+                                    labelek[i + 1, j].Text = (num * 2).ToString();
+                                    kepek[i + 1, j].Image = Image.FromFile($"{num * 2}.png");
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case "jobb":
+                    for (int i = 0; i < 4; i++)
+                    {
+                        for (int j = 0; j < 4; j++)
+                        {
+                            for (int h = j; h == 4; h++)
+                            {
+                                if (labelek[i, j +1].Text == "")
+                                {
+                                    labelek[i, j +1].Text = labelek[i, j].Text;
+                                    labelek[i, j].Text = "";
+                                    kepek[i, j + 1].Image = kepek[i, j].Image;
+                                    kepek[i, j].Image = Image.FromFile("1767_hi_res.png");
+                                }
+                                else if (labelek[i, j + 1].Text == labelek[i, j].Text)
+                                {
+                                    int num = Convert.ToInt32(labelek[i, j + 1].Text);
+                                    labelek[i, j].Text = "";
+                                    kepek[i, j].Image = Image.FromFile("1767_hi_res.png");
+                                    labelek[i, j + 1].Text = (num * 2).ToString();
+                                    kepek[i, j + 1].Image = Image.FromFile($"{num * 2}.png");
+                                }
+                            }
+                        }
+                    }
+                    break;
+            }
         }
 
         private void Fbtn_Click(object sender, EventArgs e)
         {
+            string direction = "fel";
             putnumber();
+            Movolas(direction);
         }
 
         private void Jbtn_Click(object sender, EventArgs e)
         {
+            string direction = "jobb";
             putnumber();
+            Movolas(direction);
         }
 
         private void Lbtn_Click(object sender, EventArgs e)
         {
+            string direction = "le";
             putnumber();
+            Movolas(direction);
         }
     }
 }
