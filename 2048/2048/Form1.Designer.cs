@@ -100,7 +100,7 @@ namespace _2048
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(381, 601);
+            this.ClientSize = new System.Drawing.Size(810, 592);
             this.Controls.Add(this.Fbtn);
             this.Controls.Add(this.Lbtn);
             this.Controls.Add(this.Jbtn);
