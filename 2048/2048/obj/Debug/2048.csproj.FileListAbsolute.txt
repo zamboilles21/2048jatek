@@ -18,3 +18,13 @@ D:\Git\proj\2048\2048\obj\Debug\2048.pdb
 D:\Git\proj\2048\2048\bin\Debug\2048.exe.config
 D:\Git\proj\2048\2048\bin\Debug\2048.exe
 D:\Git\proj\2048\2048\bin\Debug\2048.pdb
+E:\suli\2048_repo\2048\2048\bin\Debug\2048.exe.config
+E:\suli\2048_repo\2048\2048\bin\Debug\2048.exe
+E:\suli\2048_repo\2048\2048\bin\Debug\2048.pdb
+E:\suli\2048_repo\2048\2048\obj\Debug\2048.csproj.AssemblyReference.cache
+E:\suli\2048_repo\2048\2048\obj\Debug\_2048.A2048.resources
+E:\suli\2048_repo\2048\2048\obj\Debug\_2048.Properties.Resources.resources
+E:\suli\2048_repo\2048\2048\obj\Debug\2048.csproj.GenerateResource.cache
+E:\suli\2048_repo\2048\2048\obj\Debug\2048.csproj.CoreCompileInputs.cache
+E:\suli\2048_repo\2048\2048\obj\Debug\2048.exe
+E:\suli\2048_repo\2048\2048\obj\Debug\2048.pdb

@@ -14,8 +14,8 @@ namespace _2048
     {
 
 
+
         
-        static PictureBox[,] kepek = new PictureBox[4, 4];
         static Label[,] labelek = new Label[4, 4];
         
         public A2048()
@@ -35,45 +35,28 @@ namespace _2048
 
         private void generatemap()
         {
+            Font font = new Font("Arial", 20);
             
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 4; j++)
-                {
-                    PictureBox uj = new PictureBox();
-                    uj.Location = new Point(12 + 75 * j + 5 * j, 12 + 75 * i + 5 * i);
-                    uj.Size = new Size(75, 75);
-                    uj.Name = $"{i}_{j}";
-                    kepek[i, j] = uj;
-                    
-                        uj.Image = Image.FromFile("1767_hi_res.png");
-                    
-
-                    uj.BackColor = Color.Transparent;
-                    
-                    this.Controls.Add(uj);
-                    
-                }
-            }
 
             
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    Label uj2 = new Label();
-                    uj2.Location = new Point(12 + 75 * j + 5 * j, 12 + 75 * i + 5 * i);
-                    uj2.Size = new Size(75, 75);
-                    uj2.Name = $"{i}_{j}";
-                    labelek[i, j] = uj2;
-                    
-                        uj2.Text = "";
-                    
+                    Label cimke = new Label();
+                    cimke.Location = new Point(12 + 75 * j + 5 * j, 12 + 75 * i + 5 * i);
+                    cimke.Size = new Size(75, 75);
+                    cimke.Name = $"{i}_{j}";
+                    labelek[i, j] = cimke;
+                    cimke.TextAlign = ContentAlignment.MiddleCenter;
+                        cimke.Text = "";
+                    cimke.Font = font;
 
-                    uj2.BackColor = Color.Transparent;
+                    cimke.BackColor = Color.HotPink;
+                    cimke.ForeColor = Color.Beige;
                     
-                    this.Controls.Add(uj2);
-
+                    this.Controls.Add(cimke);
+                    labelek[i, j] = cimke;
                 }
             }
 
@@ -96,12 +79,10 @@ namespace _2048
              
             int number = generatetwoorfour();
             int x= generatelocation();
-            
             int y = generatelocation();
             if (labelek[x, y].Text=="")
             {
                 labelek[x, y].Text = number.ToString();
-                kepek[x, y].Image= Image.FromFile($"{number}.png");
             }
             else
             {
@@ -148,10 +129,11 @@ namespace _2048
 
         private void Bbtn_Click(object sender, EventArgs e)
         {
-            string direction="bal";
+            //string direction="bal";
+            pontszamolas();
+            Movolas("bal");
             putnumber();
-            Movolas(direction);
-            
+
         }
 
         private void Movolas(string irany)
@@ -159,104 +141,172 @@ namespace _2048
             switch (irany)
             {
                 case "bal":
-                    for (int i = 0; i < 4; i++)
                     {
-                        for (int j = 0; j < 4; j++)
+                        for (int sor = 0; sor < 4; sor++)
                         {
-                            for (int h = j; h == 1; h--)
+                            for (int oszlop = 0; oszlop < 4; oszlop++)
                             {
-                                if (labelek[i,j-1].Text=="")
+                                if (labelek[sor, oszlop].Text != "")
                                 {
-                                    labelek[i, j - 1].Text = labelek[i, j].Text;
-                                    labelek[i, j].Text="";
-                                    kepek[i, j - 1].Image = kepek[i, j].Image;
-                                    kepek[i, j].Image= Image.FromFile("1767_hi_res.png");
+                                    for (int i = oszlop + 1; i < 4; i++)
+                                    {
+                                        if (labelek[sor, i].Text != labelek[sor, i].Text && labelek[sor, i].Text != "") break;
+                                        if (labelek[sor, i].Text == labelek[sor, i].Text)
+                                        {
+                                            labelek[sor, oszlop].Text = (Convert.ToInt32(labelek[sor, oszlop].Text) * 2).ToString();
+                                            labelek[sor, i].Text = "";
+
+                                            break;
+                                        }
+                                    }
                                 }
-                                else if(labelek[i, j - 1].Text == labelek[i, j].Text)
+                            }
+                        }
+                        for (int sor = 0; sor < 4; sor++)
+                        {
+                            for (int oszlop = 0; oszlop < 4; oszlop++)
+                            {
+                                if (labelek[sor, oszlop].Text == "")
                                 {
-                                    int num = Convert.ToInt32(labelek[i, j - 1].Text);
-                                    labelek[i, j].Text = "";
-                                    kepek[i,j].Image= Image.FromFile("1767_hi_res.png");
-                                    labelek[i, j - 1].Text = (num * 2).ToString();
-                                    kepek[i, j - 1].Image = Image.FromFile($"{num*2}.png");
+                                    for (int i = oszlop + 1; i < 4; i++)
+                                    {
+                                        if (labelek[sor, i].Text != "")
+                                        {
+                                            labelek[sor, oszlop].Text = labelek[sor, i].Text;
+                                            labelek[sor, i].Text = "";
+
+                                            break;
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                     break;
                 case "fel":
-                    for (int i = 0; i < 4; i++)
                     {
-                        for (int j = 0; j < 4; j++)
+                        for (int sor = 0; sor < 4; sor++)
                         {
-                            for (int h = i; h == 1; h++)
+                            for (int oszlop = 0; oszlop < 4; oszlop++)
                             {
-                                if (labelek[i - 1, j].Text == "")
+                                if (labelek[sor, oszlop].Text != "")
                                 {
-                                    labelek[i - 1, j].Text = labelek[i, j].Text;
-                                    labelek[i, j].Text = "";
-                                    kepek[i - 1, j].Image = kepek[i, j].Image;
-                                    kepek[i, j].Image = Image.FromFile("1767_hi_res.png");
+                                    for (int i = sor + 1; i < 4; i++)
+                                    {
+                                        if (labelek[i, oszlop].Text != labelek[sor, oszlop].Text && labelek[i, oszlop].Text != "") break;
+                                        if (labelek[i, oszlop].Text == labelek[sor, oszlop].Text)
+                                        {
+                                            labelek[sor, oszlop].Text = (Convert.ToInt32(labelek[sor, oszlop].Text) * 2).ToString();
+                                            labelek[i, oszlop].Text = "";
+
+                                            break;
+                                        }
+                                    }
                                 }
-                                else if (labelek[i - 1, j].Text == labelek[i, j].Text)
+                            }
+                        }
+                        for (int sor = 0; sor < 4; sor++)
+                        {
+                            for (int oszlop = 0; oszlop < 4; oszlop++)
+                            {
+                                if (labelek[sor, oszlop].Text == "")
                                 {
-                                    int num = Convert.ToInt32(labelek[i - 1, j].Text);
-                                    labelek[i, j].Text = "";
-                                    kepek[i, j].Image = Image.FromFile("1767_hi_res.png");
-                                    labelek[i - 1, j].Text = (num * 2).ToString();
-                                    kepek[i - 1, j].Image = Image.FromFile($"{num * 2}.png");
+                                    for (int i = sor + 1; i < 4; i++)
+                                    {
+                                        if (labelek[i, oszlop].Text != "")
+                                        {
+                                            labelek[sor, oszlop].Text = labelek[i, oszlop].Text;
+                                            labelek[i, oszlop].Text = "";
+
+                                            break;
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                     break;
                 case "le":
-                    for (int i = 0; i < 4; i++)
                     {
-                        for (int j = 0; j < 4; j++)
+                        for (int sor = 4; sor >=0; sor--)
                         {
-                            for (int h = i; h == 4; h++)
+                            for (int oszlop = 0; oszlop < 4; oszlop++)
                             {
-                                if (labelek[i + 1, j].Text == "")
+                                if (labelek[sor, oszlop].Text != "")
                                 {
-                                    labelek[i + 1, j ].Text = labelek[i, j].Text;
-                                    labelek[i, j].Text = "";
-                                    kepek[i + 1, j].Image = kepek[i, j].Image;
-                                    kepek[i, j].Image = Image.FromFile("1767_hi_res.png");
+                                    for (int i = sor - 1; i >=0; i--)
+                                    {
+                                        if (labelek[i, oszlop].Text != labelek[sor, oszlop].Text && labelek[i, oszlop].Text != "") break;
+                                        if (labelek[i, oszlop].Text == labelek[sor, oszlop].Text)
+                                        {
+                                            labelek[sor, oszlop].Text = (Convert.ToInt32(labelek[sor, oszlop].Text) * 2).ToString();
+                                            labelek[i, oszlop].Text = "";
+
+                                            break;
+                                        }
+                                    }
                                 }
-                                else if (labelek[i + 1, j].Text == labelek[i, j].Text)
+                            }
+                        }
+                        for (int sor = 0; sor < 4; sor++)
+                        {
+                            for (int oszlop = 4; oszlop >=0; oszlop++)
+                            {
+                                if (labelek[sor, oszlop].Text == "")
                                 {
-                                    int num = Convert.ToInt32(labelek[i + 1, j].Text);
-                                    labelek[i, j].Text = "";
-                                    kepek[i, j].Image = Image.FromFile("1767_hi_res.png");
-                                    labelek[i + 1, j].Text = (num * 2).ToString();
-                                    kepek[i + 1, j].Image = Image.FromFile($"{num * 2}.png");
+                                    for (int i = sor + 1; i < 4; i++)
+                                    {
+                                        if (labelek[i, oszlop].Text != "")
+                                        {
+                                            labelek[sor, oszlop].Text = labelek[i, oszlop].Text;
+                                            labelek[i, oszlop].Text = "";
+
+                                            break;
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                     break;
                 case "jobb":
-                    for (int i = 0; i < 4; i++)
                     {
-                        for (int j = 0; j < 4; j++)
+                        for (int sor = 4; sor >= 0; sor++)
                         {
-                            for (int h = j; h == 4; h++)
+                            for (int oszlop = 4; oszlop >=0; oszlop--)
                             {
-                                if (labelek[i, j +1].Text == "")
+                                if (labelek[sor, oszlop].Text != "")
                                 {
-                                    labelek[i, j +1].Text = labelek[i, j].Text;
-                                    labelek[i, j].Text = "";
-                                    kepek[i, j + 1].Image = kepek[i, j].Image;
-                                    kepek[i, j].Image = Image.FromFile("1767_hi_res.png");
+                                    for (int i = oszlop - 1; i >=0; i++)
+                                    {
+                                        if (labelek[sor, i].Text != labelek[sor, i].Text && labelek[sor, i].Text != "") break;
+                                        if (labelek[sor, i].Text == labelek[sor, i].Text)
+                                        {
+                                            labelek[sor, oszlop].Text = (Convert.ToInt32(labelek[sor, oszlop].Text) * 2).ToString();
+                                            labelek[sor, i].Text = "";
+
+                                            break;
+                                        }
+                                    }
                                 }
-                                else if (labelek[i, j + 1].Text == labelek[i, j].Text)
+                            }
+                        }
+                        for (int sor = 0; sor < 4; sor++)
+                        {
+                            for (int oszlop = 0; oszlop >= 4; oszlop--)
+                            {
+                                if (labelek[sor, oszlop].Text == "")
                                 {
-                                    int num = Convert.ToInt32(labelek[i, j + 1].Text);
-                                    labelek[i, j].Text = "";
-                                    kepek[i, j].Image = Image.FromFile("1767_hi_res.png");
-                                    labelek[i, j + 1].Text = (num * 2).ToString();
-                                    kepek[i, j + 1].Image = Image.FromFile($"{num * 2}.png");
+                                    for (int i = oszlop - 1; i < 4; i++)
+                                    {
+                                        if (labelek[sor, i].Text != "")
+                                        {
+                                            labelek[sor, oszlop].Text = labelek[sor, i].Text;
+                                            labelek[sor, i].Text = "";
+
+                                            break;
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -267,23 +317,79 @@ namespace _2048
 
         private void Fbtn_Click(object sender, EventArgs e)
         {
-            string direction = "fel";
+            //string direction = "fel";
+            pontszamolas();
+            Movolas("fel");
+
             putnumber();
-            Movolas(direction);
         }
 
         private void Jbtn_Click(object sender, EventArgs e)
         {
-            string direction = "jobb";
+            //string direction = "jobb";
+
+            pontszamolas();
+
+            
+
+            Movolas("jobb");
+
             putnumber();
-            Movolas(direction);
+        }
+
+        private void pontszamolas()
+        {
+            int score = Convert.ToInt32(score_lbl.Text);
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; i < 4; i++)
+                {
+                    if(labelek[i, j].Text != "")
+                    {
+                        score +=Convert.ToInt32(labelek[i, j].Text);
+                    }
+                }
+            }
+            score_lbl.Text = score.ToString();
         }
 
         private void Lbtn_Click(object sender, EventArgs e)
         {
-            string direction = "le";
+            //string direction = "le";
+            pontszamolas();
+            Movolas("le");
+
             putnumber();
-            Movolas(direction);
         }
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyData)
+            {
+                case Keys.W:
+                case Keys.Up:
+                    Movolas("fel");
+                    break;
+
+                case Keys.S:
+                case Keys.Down:
+                    Movolas("le");
+                    break;
+
+                case Keys.D:
+                case Keys.Right:
+                    Movolas("jobbra");
+                    break;
+
+                case Keys.A:
+                case Keys.Left:
+                    Movolas("balra");
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+
     }
 }
