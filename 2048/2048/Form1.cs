@@ -17,7 +17,7 @@ namespace _2048
 
         
         static Label[,] labelek = new Label[4, 4];
-        
+        public static string konami;
         public A2048()
         {
             InitializeComponent();
@@ -455,6 +455,26 @@ namespace _2048
             }
         }
 
+        private void WASD_Click(object sender, EventArgs e)
+        {
+            if (Jbtn.Enabled == false)
+            {
+                Jbtn.Enabled = true;
+                Lbtn.Enabled = true;
+                Fbtn.Enabled = true;
+                Bbtn.Enabled = true;
+            }
+            else
+            {
+                Jbtn.Enabled = false;
+                Lbtn.Enabled = false;
+                Fbtn.Enabled = false;
+                Bbtn.Enabled = false;
+            }
+            
 
+
+
+        }
     }
 }

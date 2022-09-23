@@ -59,6 +59,7 @@ namespace _2048
             this.WASD.TabIndex = 12;
             this.WASD.Text = "WASD";
             this.WASD.UseVisualStyleBackColor = true;
+            this.WASD.Click += new System.EventHandler(this.WASD_Click);
             // 
             // Jbtn
             // 
