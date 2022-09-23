@@ -28,11 +28,63 @@ namespace _2048
 
 
             generatemap();
-            
+            szinezo();
             startup();
 
         }
 
+        private void szinezo()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    switch (labelek[i,j].Text)
+                    {
+                        
+                        case "2":
+                            labelek[i, j].BackColor = Color.DodgerBlue;
+                            break;
+                        case "4":
+                            labelek[i, j].BackColor = Color.FromArgb(68, 228, 54);
+                            break;
+                        case "8":
+                            labelek[i, j].BackColor = Color.FromArgb(44, 146, 97);
+                            break;
+                        case "16":
+                            labelek[i, j].BackColor = Color.FromArgb(211, 213, 55);
+                            break;
+                        case "32":
+                            labelek[i, j].BackColor = Color.FromArgb(211, 200, 55);
+                            break;
+                        case "64":
+                            labelek[i, j].BackColor = Color.FromArgb(200, 156, 85);
+                            break;
+                        case "128":
+                            labelek[i, j].BackColor = Color.FromArgb(192, 200, 69);
+                            break;
+                        case "256":
+                            labelek[i, j].BackColor = Color.FromArgb(70, 98, 198);
+                            break;
+                        case "512":
+                            labelek[i, j].BackColor = Color.FromArgb(248, 4, 82);
+                            break;
+                        case "1024":
+                            labelek[i, j].BackColor = Color.FromArgb(125, 131, 113);
+                            break;
+                        case "2048":
+                            labelek[i, j].BackColor = Color.FromArgb(125, 125, 125);
+                            break;
+                        default:
+                            labelek[i, j].BackColor = Color.HotPink;
+                            break;
+
+                    }
+                }
+            }
+            
+        }
+        
         private void generatemap()
         {
             Font font = new Font("Arial", 20);
@@ -83,10 +135,12 @@ namespace _2048
             if (labelek[x, y].Text=="")
             {
                 labelek[x, y].Text = number.ToString();
+                szinezo();
             }
             else
             {
                 putnumber();
+                szinezo();
             }
             
             
@@ -133,6 +187,7 @@ namespace _2048
             pontszamolas();
             Movolas("bal");
             putnumber();
+            szinezo();
 
         }
 
@@ -322,6 +377,7 @@ namespace _2048
             Movolas("fel");
 
             putnumber();
+            szinezo();
         }
 
         private void Jbtn_Click(object sender, EventArgs e)
@@ -335,6 +391,7 @@ namespace _2048
             Movolas("jobb");
 
             putnumber();
+            szinezo();
         }
 
         private void pontszamolas()
@@ -358,9 +415,13 @@ namespace _2048
             //string direction = "le";
             pontszamolas();
             Movolas("le");
-
+            
             putnumber();
+            szinezo();
         }
+
+        
+
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyData)
@@ -368,21 +429,25 @@ namespace _2048
                 case Keys.W:
                 case Keys.Up:
                     Movolas("fel");
+                    szinezo();
                     break;
 
                 case Keys.S:
                 case Keys.Down:
                     Movolas("le");
+                    szinezo();
                     break;
 
                 case Keys.D:
                 case Keys.Right:
                     Movolas("jobbra");
+                    szinezo();
                     break;
 
                 case Keys.A:
                 case Keys.Left:
                     Movolas("balra");
+                    szinezo();
                     break;
 
                 default:
