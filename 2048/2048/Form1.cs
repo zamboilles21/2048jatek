@@ -476,5 +476,11 @@ namespace _2048
 
 
         }
+
+        private void SRTbtn_Click(object sender, EventArgs e)
+        {
+            SRTbtn.Visible = false;
+            label2.Visible = false;
+        }
     }
 }

@@ -39,6 +39,8 @@ namespace _2048
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.score_lbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.SRTbtn = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Bbtn
@@ -117,11 +119,36 @@ namespace _2048
             this.label1.TabIndex = 17;
             this.label1.Text = "Pontszámok:";
             // 
+            // SRTbtn
+            // 
+            this.SRTbtn.BackColor = System.Drawing.Color.Red;
+            this.SRTbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.SRTbtn.Location = new System.Drawing.Point(0, -8);
+            this.SRTbtn.Name = "SRTbtn";
+            this.SRTbtn.Size = new System.Drawing.Size(355, 627);
+            this.SRTbtn.TabIndex = 18;
+            this.SRTbtn.Text = "START";
+            this.SRTbtn.UseVisualStyleBackColor = false;
+            this.SRTbtn.Click += new System.EventHandler(this.SRTbtn_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Red;
+            this.label2.Font = new System.Drawing.Font("Webdings", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.label2.Location = new System.Drawing.Point(12, 218);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(325, 26);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Készen állsz?";
+            // 
             // A2048
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(349, 612);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.SRTbtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.score_lbl);
             this.Controls.Add(this.Fbtn);
@@ -147,6 +174,8 @@ namespace _2048
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label score_lbl;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button SRTbtn;
+        private System.Windows.Forms.Label label2;
     }
 }
 
