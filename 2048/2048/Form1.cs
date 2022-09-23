@@ -396,7 +396,7 @@ namespace _2048
 
         private void pontszamolas()
         {
-            int score = Convert.ToInt32(score_lbl.Text);
+            long score = Convert.ToInt64(score_lbl.Text);
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; i < 4; i++)
