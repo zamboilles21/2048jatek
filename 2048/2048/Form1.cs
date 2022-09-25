@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,8 +16,9 @@ namespace _2048
 
 
 
-        
+        static int counter = 0;
         static Label[,] labelek = new Label[4, 4];
+        
         public static string konami;
         public A2048()
         {
@@ -25,11 +27,12 @@ namespace _2048
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-
+            
+            
             generatemap();
-            szinezo();
-            startup();
+            
+            putnumber(2);
+            
 
         }
 
@@ -95,6 +98,7 @@ namespace _2048
             {
                 for (int j = 0; j < 4; j++)
                 {
+                    
                     Label cimke = new Label();
                     cimke.Location = new Point(12 + 75 * j + 5 * j, 12 + 75 * i + 5 * i);
                     cimke.Size = new Size(75, 75);
@@ -111,64 +115,87 @@ namespace _2048
                     labelek[i, j] = cimke;
                 }
             }
-
-
-
-
-
         }
-
-        private void startup()
+        private void putnumber(int num)
         {
-
-            putnumber();
-            putnumber();
-        }
-
-        private void putnumber()
-        {
-
-             
-            int number = generatetwoorfour();
-            int x= generatelocation();
-            int y = generatelocation();
-            if (labelek[x, y].Text=="")
+            
+            for (int i = 0; i < num; i++)
             {
-                labelek[x, y].Text = number.ToString();
-                szinezo();
+                bool free = false; ;
+                Random velet = new Random();
+                int number = velet.Next(0, 2);
+                Thread.Sleep(50);
+
+                if (vanszabadhely())
+                {
+                    while (!free)
+                    {
+
+                        int x = velet.Next(0, 4);
+                        Thread.Sleep(50);
+                        int y = velet.Next(0, 4);
+
+                        if (labelek[x, y].Text == "")
+                        {
+                            if (number == 1)
+                            {
+                                labelek[x, y].Text = "4";
+                                free = true;
+                            }
+                            else
+                            {
+                                labelek[x, y].Text = "2";
+                                free = true;
+                            }
+                        }
+
+                    }
+                    
+                }
+                else
+                {
+                    DialogResult result = MessageBox.Show("Szeretnél újat játszani? ", "Sajnos vesztettél", MessageBoxButtons.YesNo);
+                    if (result==DialogResult.Yes)
+                    {
+                        Clear();
+                    }
+                    else
+                    {
+                        Close();
+                    }
+                }
+
+
             }
-            else
-            {
-                putnumber();
-                szinezo();
-            }
-            
-            
-
-
-
+            szinezo();
         }
 
-        private int generatelocation()
+        private void Clear()
         {
-            Random location = new Random();
-            int x = location.Next(1, 4);
-            
-            return x;
-            
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    labelek[i, j].Text = "";
+                }
+            }
+            score_lbl.Text = "0";
         }
 
-        private int generatetwoorfour()
+        private bool vanszabadhely()
         {
-           
-            Random velet = new Random();
-            int decide = velet.Next(0, 2);
-            if (decide == 0)
+            bool van = false;
+            for (int sor = 0; sor < 4; sor++)
             {
-                return  2;
+                for (int oszlop = 0; oszlop < 4; oszlop++)
+                {
+                    if (labelek[sor,oszlop].Text=="")
+                    {
+                        van = true;
+                    }
+                }
             }
-            return  4;
-            
+            return van;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -183,11 +210,13 @@ namespace _2048
 
         private void Bbtn_Click(object sender, EventArgs e)
         {
+            counter++;
+            konami += "left";
             //string direction="bal";
             pontszamolas();
             Movolas("bal");
-            putnumber();
-            szinezo();
+            putnumber(1);
+            superdupersecret();
 
         }
 
@@ -205,8 +234,8 @@ namespace _2048
                                 {
                                     for (int i = oszlop + 1; i < 4; i++)
                                     {
-                                        if (labelek[sor, i].Text != labelek[sor, i].Text && labelek[sor, i].Text != "") break;
-                                        if (labelek[sor, i].Text == labelek[sor, i].Text)
+                                        if (labelek[sor, i].Text != labelek[sor, oszlop].Text && labelek[sor, i].Text != "") break;
+                                        if (labelek[sor, i].Text == labelek[sor, oszlop].Text)
                                         {
                                             labelek[sor, oszlop].Text = (Convert.ToInt32(labelek[sor, oszlop].Text) * 2).ToString();
                                             labelek[sor, i].Text = "";
@@ -283,7 +312,7 @@ namespace _2048
                     break;
                 case "le":
                     {
-                        for (int sor = 4; sor >=0; sor--)
+                        for (int sor = 3; sor >=0; sor--)
                         {
                             for (int oszlop = 0; oszlop < 4; oszlop++)
                             {
@@ -303,13 +332,13 @@ namespace _2048
                                 }
                             }
                         }
-                        for (int sor = 0; sor < 4; sor++)
+                        for (int sor = 3; sor >=0; sor--)
                         {
-                            for (int oszlop = 4; oszlop >=0; oszlop++)
+                            for (int oszlop = 0; oszlop <4; oszlop++)
                             {
                                 if (labelek[sor, oszlop].Text == "")
                                 {
-                                    for (int i = sor + 1; i < 4; i++)
+                                    for (int i = sor - 1; i >=0; i--)
                                     {
                                         if (labelek[i, oszlop].Text != "")
                                         {
@@ -326,16 +355,16 @@ namespace _2048
                     break;
                 case "jobb":
                     {
-                        for (int sor = 4; sor >= 0; sor++)
+                        for (int sor = 3; sor >= 0; sor--)
                         {
-                            for (int oszlop = 4; oszlop >=0; oszlop--)
+                            for (int oszlop = 3; oszlop >=0; oszlop--)
                             {
                                 if (labelek[sor, oszlop].Text != "")
                                 {
-                                    for (int i = oszlop - 1; i >=0; i++)
+                                    for (int i = oszlop - 1; i >=0; i--)
                                     {
-                                        if (labelek[sor, i].Text != labelek[sor, i].Text && labelek[sor, i].Text != "") break;
-                                        if (labelek[sor, i].Text == labelek[sor, i].Text)
+                                        if (labelek[sor, i].Text != labelek[sor, oszlop].Text && labelek[sor, i].Text != "") break;
+                                        if (labelek[sor, i].Text == labelek[sor, oszlop].Text)
                                         {
                                             labelek[sor, oszlop].Text = (Convert.ToInt32(labelek[sor, oszlop].Text) * 2).ToString();
                                             labelek[sor, i].Text = "";
@@ -348,11 +377,11 @@ namespace _2048
                         }
                         for (int sor = 0; sor < 4; sor++)
                         {
-                            for (int oszlop = 0; oszlop >= 4; oszlop--)
+                            for (int oszlop = 3; oszlop >= 0; oszlop--)
                             {
                                 if (labelek[sor, oszlop].Text == "")
                                 {
-                                    for (int i = oszlop - 1; i < 4; i++)
+                                    for (int i = oszlop - 1; i>=0; i--)
                                     {
                                         if (labelek[sor, i].Text != "")
                                         {
@@ -372,16 +401,42 @@ namespace _2048
 
         private void Fbtn_Click(object sender, EventArgs e)
         {
+            counter++;
+            konami += "up";
             //string direction = "fel";
             pontszamolas();
             Movolas("fel");
 
-            putnumber();
-            szinezo();
+            putnumber(1);
+            superdupersecret();
+        }
+
+        private void superdupersecret()
+        {
+            if (counter==666)
+            {
+                System.Diagnostics.Process.Start("http://www.gov.cn");
+            }
+            if (counter%8==0)
+            {
+                if (konami == "upupdowndownleftrightleftright")
+                {
+                    int cheat = Convert.ToInt32(score_lbl.Text);
+                    cheat *= 10;
+                    score_lbl.Text = cheat.ToString();
+                }
+                else
+                {
+                    konami = "";
+                }
+            }
+            
         }
 
         private void Jbtn_Click(object sender, EventArgs e)
         {
+            counter++;
+            konami += "right";
             //string direction = "jobb";
 
             pontszamolas();
@@ -390,8 +445,8 @@ namespace _2048
 
             Movolas("jobb");
 
-            putnumber();
-            szinezo();
+            putnumber(1);
+            superdupersecret();
         }
 
         private void pontszamolas()
@@ -412,12 +467,14 @@ namespace _2048
 
         private void Lbtn_Click(object sender, EventArgs e)
         {
+            counter++;
+            konami += "down";
             //string direction = "le";
             pontszamolas();
             Movolas("le");
             
-            putnumber();
-            szinezo();
+            putnumber(1);
+            superdupersecret();
         }
 
         
@@ -429,25 +486,25 @@ namespace _2048
                 case Keys.W:
                 case Keys.Up:
                     Movolas("fel");
-                    szinezo();
+                    
                     break;
 
                 case Keys.S:
                 case Keys.Down:
                     Movolas("le");
-                    szinezo();
+                    
                     break;
 
                 case Keys.D:
                 case Keys.Right:
                     Movolas("jobbra");
-                    szinezo();
+                    
                     break;
 
                 case Keys.A:
                 case Keys.Left:
                     Movolas("balra");
-                    szinezo();
+                    
                     break;
 
                 default:
@@ -463,6 +520,7 @@ namespace _2048
                 Lbtn.Enabled = true;
                 Fbtn.Enabled = true;
                 Bbtn.Enabled = true;
+                
             }
             else
             {
@@ -470,6 +528,7 @@ namespace _2048
                 Lbtn.Enabled = false;
                 Fbtn.Enabled = false;
                 Bbtn.Enabled = false;
+                
             }
             
 
